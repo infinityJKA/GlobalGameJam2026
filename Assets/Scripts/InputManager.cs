@@ -29,7 +29,16 @@ public class InputManager : MonoBehaviour
     {
         if (gm.controlState == ControlState.Overworld)
         {
-            
+            if(gm.playerManager.layer1.activeSelf)
+            {
+                gm.playerManager.layer1.SetActive(false);
+                gm.playerManager.layer2.SetActive(true);
+            }
+            else
+            {
+                gm.playerManager.layer1.SetActive(true);
+                gm.playerManager.layer2.SetActive(false);
+            }
         }
     }
 

@@ -8,7 +8,8 @@ public class PlayerManager : MonoBehaviour
 
     [SerializeField] Rigidbody2D rb;
     public Vector2 moveDir;
-    
+
+    public GameObject layer1, layer2;
 
     void FixedUpdate()
     {
