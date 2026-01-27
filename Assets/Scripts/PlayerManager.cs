@@ -28,8 +28,8 @@ public class PlayerManager : MonoBehaviour
 
     public void Move(Vector2 dir, int unitUp, int unitDown)
     {
-        bool hitLayer1 = Physics2D.Raycast(transform.position, dir, 1f, LayerMask.GetMask("Layer1"));
-        bool hitLayer2 = Physics2D.Raycast(playerLayer2.transform.position, dir, 1f, LayerMask.GetMask("Layer2"));
+        bool hitLayer1 = Physics2D.Raycast(transform.position, dir, 1.1f, LayerMask.GetMask("Layer1"));
+        bool hitLayer2 = Physics2D.Raycast(playerLayer2.transform.position, dir, 1.1f, LayerMask.GetMask("Layer2"));
         
         if (!hitLayer1 && !hitLayer2)
         {
