@@ -368,7 +368,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ref_interact: {fileID: 7932878164959486187, guid: 6b78817913d68bc438b591f6f7b09cef, type: 3}
   ref_mask: {fileID: -2146716416297343660, guid: 6b78817913d68bc438b591f6f7b09cef, type: 3}
-  ref_move: {fileID: 4641699907673532551, guid: 6b78817913d68bc438b591f6f7b09cef, type: 3}
+  ref_up: {fileID: 5861775951020876107, guid: 6b78817913d68bc438b591f6f7b09cef, type: 3}
+  ref_down: {fileID: 8533367970851228041, guid: 6b78817913d68bc438b591f6f7b09cef, type: 3}
+  ref_left: {fileID: 6461612999710838412, guid: 6b78817913d68bc438b591f6f7b09cef, type: 3}
+  ref_right: {fileID: 3853490861901490355, guid: 6b78817913d68bc438b591f6f7b09cef, type: 3}
   gm: {fileID: 326108783}
 --- !u!4 &326108786
 Transform:

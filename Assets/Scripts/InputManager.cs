@@ -7,14 +7,18 @@ using UnityEngine.SceneManagement;
 
 public class InputManager : MonoBehaviour
 {
-    [SerializeField] InputActionReference ref_interact, ref_mask, ref_move;
+    [SerializeField] InputActionReference ref_interact, ref_mask, ref_up, ref_down, ref_left, ref_right;
     public GameManager gm;
 
     void OnEnable()
     {
         ref_interact.action.started += action_INTERACT;
         ref_mask.action.started += action_MASK;
-        ref_move.action.Enable();
+        
+        ref_up.action.started += action_UP;
+        ref_down.action.started += action_DOWN;
+        ref_left.action.started += action_LEFT;
+        ref_right.action.started += action_RIGHT;
     }
 
     private void action_INTERACT(InputAction.CallbackContext obj)
@@ -42,25 +46,27 @@ public class InputManager : MonoBehaviour
         }
     }
 
+    private void action_UP(InputAction.CallbackContext obj)
+    {
+    }
+
+    private void action_DOWN(InputAction.CallbackContext obj)
+    {
+    }
+
+    private void action_LEFT(InputAction.CallbackContext obj)
+    {
+    }
+
+    private void action_RIGHT(InputAction.CallbackContext obj)
+    {
+    }
+
+
     private void FixedUpdate()
     {
         if (gm.controlState == ControlState.Overworld)
         {  
-            Vector2 moveValue = ref_move.action.ReadValue<Vector2>();
-
-            if (moveValue != Vector2.zero)
-            {
-                moveValue.Normalize();
-                gm.playerManager.moveDir = moveValue;
-                // gm.moveManager.player.animator.SetFloat("Speed", 1);
-                //Debug.Log("RETURN (state = overworld)");
-            }
-            else
-            {
-                gm.playerManager.moveDir = moveValue;
-                // gm.moveManager.StopWalkSound();
-                // gm.moveManager.player.animator.SetFloat("Speed", 0);
-            }
         }
     }
 }
