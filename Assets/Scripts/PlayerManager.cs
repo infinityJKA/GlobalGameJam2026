@@ -9,12 +9,16 @@ public class PlayerManager : MonoBehaviour
 
     public GameObject playerLayer2;
 
-    public GameObject layer1, layer2;
+    public LayerClass layer1, layer2;
+    public bool isMasked = false;
 
+    public SpriteRenderer spriteRenderer, spriteRenderer2;
 
     void Start()
     {
         GameManager.instance.playerManager = this;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer2 = playerLayer2.GetComponent<SpriteRenderer>();
     }
 
     public void MoveUp()

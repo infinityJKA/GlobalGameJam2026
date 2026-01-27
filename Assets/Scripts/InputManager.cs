@@ -33,15 +33,46 @@ public class InputManager : MonoBehaviour
     {
         if (gm.controlState == ControlState.Overworld)
         {
-            if(gm.playerManager.layer1.activeSelf)
+            if(gm.playerManager.isMasked == false)
             {
-                gm.playerManager.layer1.SetActive(false);
-                gm.playerManager.layer2.SetActive(true);
+                foreach(SpriteRenderer s in gm.playerManager.layer2.objects)
+                {
+                    s.rendererPriority = 0;
+                    Debug.Log(s.gameObject.name +" edited priority");
+                }
+                gm.playerManager.layer2.bg.rendererPriority = -1;
+
+                foreach (SpriteRenderer s in gm.playerManager.layer1.objects)
+                {
+                    s.rendererPriority = -5;
+                    Debug.Log(s.gameObject.name +" edited priority");
+
+                }
+
+                gm.playerManager.spriteRenderer.sortingOrder = -2;
+                gm.playerManager.spriteRenderer2.sortingOrder = 1;
+
+                gm.playerManager.isMasked = true;
             }
             else
             {
-                gm.playerManager.layer1.SetActive(true);
-                gm.playerManager.layer2.SetActive(false);
+                foreach(SpriteRenderer s in gm.playerManager.layer1.objects)
+                {
+                    s.rendererPriority = 0;
+                    Debug.Log(s.gameObject.name +" edited priority");
+                }
+                gm.playerManager.layer1.bg.rendererPriority = -1;
+
+                foreach (SpriteRenderer s in gm.playerManager.layer2.objects)
+                {
+                    s.rendererPriority = -5;
+                    Debug.Log(s.gameObject.name +" edited priority");
+                }
+
+                gm.playerManager.spriteRenderer2.sortingOrder = -2;
+                gm.playerManager.spriteRenderer.sortingOrder = 1;
+
+                gm.playerManager.isMasked = false;
             }
         }
     }
