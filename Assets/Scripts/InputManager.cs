@@ -37,14 +37,14 @@ public class InputManager : MonoBehaviour
             {
                 foreach(SpriteRenderer s in gm.playerManager.layer2.objects)
                 {
-                    s.rendererPriority = 0;
+                    s.sortingOrder = 0;
                     Debug.Log(s.gameObject.name +" edited priority");
                 }
-                gm.playerManager.layer2.bg.rendererPriority = -1;
+                gm.playerManager.layer2.bg.sortingOrder = -1;
 
                 foreach (SpriteRenderer s in gm.playerManager.layer1.objects)
                 {
-                    s.rendererPriority = -5;
+                    s.sortingOrder = -5;
                     Debug.Log(s.gameObject.name +" edited priority");
 
                 }
@@ -58,14 +58,14 @@ public class InputManager : MonoBehaviour
             {
                 foreach(SpriteRenderer s in gm.playerManager.layer1.objects)
                 {
-                    s.rendererPriority = 0;
+                    s.sortingOrder = 0;
                     Debug.Log(s.gameObject.name +" edited priority");
                 }
-                gm.playerManager.layer1.bg.rendererPriority = -1;
+                gm.playerManager.layer1.bg.sortingOrder = -1;
 
                 foreach (SpriteRenderer s in gm.playerManager.layer2.objects)
                 {
-                    s.rendererPriority = -5;
+                    s.sortingOrder = -5;
                     Debug.Log(s.gameObject.name +" edited priority");
                 }
 
