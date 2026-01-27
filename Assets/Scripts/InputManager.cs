@@ -48,18 +48,34 @@ public class InputManager : MonoBehaviour
 
     private void action_UP(InputAction.CallbackContext obj)
     {
+        if (gm.controlState == ControlState.Overworld)
+        {
+            gm.playerManager.Move(Vector2.up, 0, 1);
+        }
     }
 
     private void action_DOWN(InputAction.CallbackContext obj)
     {
+        if (gm.controlState == ControlState.Overworld)
+        {
+            gm.playerManager.Move(Vector2.down, 0, -1);
+        }
     }
 
     private void action_LEFT(InputAction.CallbackContext obj)
     {
+        if (gm.controlState == ControlState.Overworld)
+        {
+            gm.playerManager.Move(Vector2.left, -1, 0);
+        }
     }
 
     private void action_RIGHT(InputAction.CallbackContext obj)
     {
+        if (gm.controlState == ControlState.Overworld)
+        {
+            gm.playerManager.Move(Vector2.right, 1, 0);
+        }
     }
 
 

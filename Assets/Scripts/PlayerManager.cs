@@ -1,24 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
     public float moveSpeed;
 
-    [SerializeField] Rigidbody2D rb;
-    public Vector2 moveDir;
+    public GameObject playerLayer2;
 
     public GameObject layer1, layer2;
 
-    void FixedUpdate()
-    {
-        rb.velocity = moveDir * moveSpeed;
-    }
 
     void Start()
     {
         GameManager.instance.playerManager = this;
+    }
+
+    public void MoveUp()
+    {
+        Move(Vector2.up, 0, 1);
+    }
+
+    public void Move(Vector2 dir, int unitUp, int unitDown)
+    {
+        bool hitLayer1 = Physics2D.Raycast(transform.position, dir, 1f, LayerMask.GetMask("Layer1"));
+        bool hitLayer2 = Physics2D.Raycast(playerLayer2.transform.position, dir, 1f, LayerMask.GetMask("Layer2"));
+        
+        if (!hitLayer1 && !hitLayer2)
+        {
+            transform.position += (Vector3) new Vector2(unitUp,unitDown);
+            playerLayer2.transform.position += (Vector3) new Vector2(unitUp,unitDown);
+        }
     }
 
 
