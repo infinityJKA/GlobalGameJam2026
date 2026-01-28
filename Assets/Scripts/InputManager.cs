@@ -33,6 +33,21 @@ public class InputManager : MonoBehaviour
     {
         if (gm.controlState == ControlState.Overworld)
         {
+            bool invalidSwitch;
+            if(gm.playerManager.isMasked == false){
+                invalidSwitch = Physics2D.Raycast(gm.playerManager.playerLayer2.transform.position, Vector2.up, 0.1f, LayerMask.GetMask("Layer2"));
+            }
+            else{
+                invalidSwitch = Physics2D.Raycast(gm.playerManager.gameObject.transform.position, Vector2.up, 0.1f, LayerMask.GetMask("Layer1"));
+            }
+
+            if (invalidSwitch)
+            {
+                Debug.Log("Can't switch right now!");
+                return;
+            }
+
+
             if(gm.playerManager.isMasked == false)
             {
                 foreach(SpriteRenderer s in gm.playerManager.layer2.objects)
