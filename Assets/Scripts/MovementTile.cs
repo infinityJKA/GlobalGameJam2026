@@ -13,7 +13,7 @@ public class MovementTile : MonoBehaviour
         if(col.gameObject.CompareTag("Player"))
         {
             Debug.Log("Trigger entered");
-            GameManager.instance.playerManager.Move(moveDirection, true, (int)moveDirection.x, (int)moveDirection.y);
+            GameManager.instance.playerManager.Move(moveDirection, true, (int)moveDirection.x, (int)moveDirection.y, this.gameObject);
         }
     }
 }
