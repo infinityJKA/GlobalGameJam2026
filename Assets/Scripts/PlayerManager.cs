@@ -11,6 +11,7 @@ public class PlayerManager : MonoBehaviour
 
     public LayerClass layer1, layer2;
     public bool isMasked = false;
+    public PlayerFacing facing = PlayerFacing.Down;
 
     public SpriteRenderer spriteRenderer, spriteRenderer2;
 
@@ -49,4 +50,12 @@ public class PlayerManager : MonoBehaviour
     }
 
 
+}
+
+public enum PlayerFacing
+{
+    Up,
+    Down,
+    Left,
+    Right
 }

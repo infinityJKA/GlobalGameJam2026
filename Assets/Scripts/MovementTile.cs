@@ -6,6 +6,7 @@ public class MovementTile : MonoBehaviour
 {
     [Header("Only ever have a 1 and a 0, and one of each")]
     public Vector2 moveDirection;
+    public MovementTile linkedTile;
 
     void OnTriggerEnter2D(Collider2D col)
     {

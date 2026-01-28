@@ -25,7 +25,33 @@ public class InputManager : MonoBehaviour
     {
         if (gm.controlState == ControlState.Overworld)
         {
-            
+            bool validInteract;
+            string layerToCheck;
+            if(gm.playerManager.isMasked == false){
+                layerToCheck = "Layer1";
+            }
+            else{
+                layerToCheck = "Layer2";
+            }
+
+            RaycastHit castHit;
+
+            if(gm.playerManager.facing == PlayerFacing.Up)
+            {
+                validInteract = Physics2D.Raycast(gm.playerManager.transform.position, Vector2.up, 1.1f, LayerMask.GetMask(layerToCheck));  
+            }
+            else if(gm.playerManager.facing == PlayerFacing.Down)
+            {
+                validInteract = Physics2D.Raycast(gm.playerManager.transform.position, Vector2.down, 1.1f, LayerMask.GetMask(layerToCheck));   
+            }
+            else if(gm.playerManager.facing == PlayerFacing.Left)
+            {
+                validInteract = Physics2D.Raycast(gm.playerManager.transform.position, Vector2.left, 1.1f, LayerMask.GetMask(layerToCheck));   
+            }
+            else if(gm.playerManager.facing == PlayerFacing.Right)
+            {
+                validInteract = Physics2D.Raycast(gm.playerManager.transform.position, Vector2.right, 1.1f, LayerMask.GetMask(layerToCheck));   
+            }
         }
     }
 
@@ -103,6 +129,7 @@ public class InputManager : MonoBehaviour
         if (gm.controlState == ControlState.Overworld)
         {
             gm.playerManager.Move(Vector2.up, false, 0, 1);
+            gm.playerManager.facing = PlayerFacing.Up;
         }
     }
 
@@ -111,6 +138,7 @@ public class InputManager : MonoBehaviour
         if (gm.controlState == ControlState.Overworld)
         {
             gm.playerManager.Move(Vector2.down, false, 0, -1);
+            gm.playerManager.facing = PlayerFacing.Down;
         }
     }
 
@@ -119,6 +147,7 @@ public class InputManager : MonoBehaviour
         if (gm.controlState == ControlState.Overworld)
         {
             gm.playerManager.Move(Vector2.left, false, -1, 0);
+            gm.playerManager.facing = PlayerFacing.Left;
         }
     }
 
@@ -127,6 +156,7 @@ public class InputManager : MonoBehaviour
         if (gm.controlState == ControlState.Overworld)
         {
             gm.playerManager.Move(Vector2.right, false, 1, 0);
+            gm.playerManager.facing = PlayerFacing.Right;
         }
     }
 
