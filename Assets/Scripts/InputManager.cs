@@ -128,7 +128,7 @@ public class InputManager : MonoBehaviour
     {
         if (gm.controlState == ControlState.Overworld)
         {
-            bool invalidSwitch;
+            RaycastHit2D invalidSwitch;
             if(gm.playerManager.isMasked == false){
                 invalidSwitch = Physics2D.Raycast(gm.playerManager.playerLayer2.transform.position, Vector2.up, 0.1f, LayerMask.GetMask("Layer2"));
             }
@@ -136,7 +136,7 @@ public class InputManager : MonoBehaviour
                 invalidSwitch = Physics2D.Raycast(gm.playerManager.gameObject.transform.position, Vector2.up, 0.1f, LayerMask.GetMask("Layer1"));
             }
 
-            if (invalidSwitch)
+            if (invalidSwitch && !invalidSwitch.transform.gameObject.GetComponent<MovementTile>())
             {
                 Debug.Log("Can't switch right now!");
                 return;
@@ -190,6 +190,9 @@ public class InputManager : MonoBehaviour
 
                 gm.playerManager.isMasked = false;
             }
+
+            gm.playerManager.gameObject.SetActive(false);
+            gm.playerManager.gameObject.SetActive(true);
         }
     }
 
