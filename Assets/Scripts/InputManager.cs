@@ -40,6 +40,7 @@ public class InputManager : MonoBehaviour
                     s.sortingOrder = 0;
                     Debug.Log(s.gameObject.name +" edited priority");
                 }
+                gm.playerManager.layer2.tilemapRenderer.sortingOrder = 0;
                 gm.playerManager.layer2.bg.sortingOrder = -1;
 
                 foreach (SpriteRenderer s in gm.playerManager.layer1.objects)
@@ -48,6 +49,8 @@ public class InputManager : MonoBehaviour
                     Debug.Log(s.gameObject.name +" edited priority");
 
                 }
+                gm.playerManager.layer1.bg.sortingOrder = -6;
+                gm.playerManager.layer1.tilemapRenderer.sortingOrder = -5;
 
                 gm.playerManager.spriteRenderer.sortingOrder = -2;
                 gm.playerManager.spriteRenderer2.sortingOrder = 1;
@@ -61,6 +64,7 @@ public class InputManager : MonoBehaviour
                     s.sortingOrder = 0;
                     Debug.Log(s.gameObject.name +" edited priority");
                 }
+                gm.playerManager.layer1.tilemapRenderer.sortingOrder = 0;
                 gm.playerManager.layer1.bg.sortingOrder = -1;
 
                 foreach (SpriteRenderer s in gm.playerManager.layer2.objects)
@@ -68,6 +72,8 @@ public class InputManager : MonoBehaviour
                     s.sortingOrder = -5;
                     Debug.Log(s.gameObject.name +" edited priority");
                 }
+                gm.playerManager.layer2.bg.sortingOrder = -6;
+                gm.playerManager.layer2.tilemapRenderer.sortingOrder = -5;
 
                 gm.playerManager.spriteRenderer2.sortingOrder = -2;
                 gm.playerManager.spriteRenderer.sortingOrder = 1;
@@ -81,7 +87,7 @@ public class InputManager : MonoBehaviour
     {
         if (gm.controlState == ControlState.Overworld)
         {
-            gm.playerManager.Move(Vector2.up, 0, 1);
+            gm.playerManager.Move(Vector2.up, false, 0, 1);
         }
     }
 
@@ -89,7 +95,7 @@ public class InputManager : MonoBehaviour
     {
         if (gm.controlState == ControlState.Overworld)
         {
-            gm.playerManager.Move(Vector2.down, 0, -1);
+            gm.playerManager.Move(Vector2.down, false, 0, -1);
         }
     }
 
@@ -97,7 +103,7 @@ public class InputManager : MonoBehaviour
     {
         if (gm.controlState == ControlState.Overworld)
         {
-            gm.playerManager.Move(Vector2.left, -1, 0);
+            gm.playerManager.Move(Vector2.left, false, -1, 0);
         }
     }
 
@@ -105,7 +111,7 @@ public class InputManager : MonoBehaviour
     {
         if (gm.controlState == ControlState.Overworld)
         {
-            gm.playerManager.Move(Vector2.right, 1, 0);
+            gm.playerManager.Move(Vector2.right, false, 1, 0);
         }
     }
 

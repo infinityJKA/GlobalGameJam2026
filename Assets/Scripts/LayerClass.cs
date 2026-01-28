@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class LayerClass : MonoBehaviour
 {
     public List<SpriteRenderer> objects;
     public SpriteRenderer bg;
+    public TilemapRenderer tilemapRenderer;
 
     void Start()
     {

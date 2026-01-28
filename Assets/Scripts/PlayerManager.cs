@@ -21,20 +21,30 @@ public class PlayerManager : MonoBehaviour
         spriteRenderer2 = playerLayer2.GetComponent<SpriteRenderer>();
     }
 
-    public void MoveUp()
+    public void Move(Vector2 dir, bool isForced, int unitUp, int unitDown)
     {
-        Move(Vector2.up, 0, 1);
-    }
-
-    public void Move(Vector2 dir, int unitUp, int unitDown)
-    {
-        bool hitLayer1 = Physics2D.Raycast(transform.position, dir, 1.1f, LayerMask.GetMask("Layer1"));
-        bool hitLayer2 = Physics2D.Raycast(playerLayer2.transform.position, dir, 1.1f, LayerMask.GetMask("Layer2"));
+        bool hitlayer;
+        bool hitlayerFar;
+        if(isMasked == false){
+            hitlayer = Physics2D.Raycast(transform.position, dir, 1.1f, LayerMask.GetMask("Layer1"));
+            hitlayerFar = Physics2D.Raycast(transform.position, dir, 2.1f, LayerMask.GetMask("Layer1"));
+        }
+        else{
+            hitlayer = Physics2D.Raycast(playerLayer2.transform.position, dir, 1.1f, LayerMask.GetMask("Layer2"));
+            hitlayerFar = Physics2D.Raycast(playerLayer2.transform.position, dir, 2.1f, LayerMask.GetMask("Layer2"));
+        }
         
-        if (!hitLayer1 && !hitLayer2)
+        if (hitlayer == false)
         {
-            transform.position += (Vector3) new Vector2(unitUp,unitDown);
-            playerLayer2.transform.position += (Vector3) new Vector2(unitUp,unitDown);
+            if(hitlayerFar == false && isForced){
+                transform.position += (Vector3) new Vector2(unitUp*2,unitDown*2);
+                playerLayer2.transform.position += (Vector3) new Vector2(unitUp*2,unitDown*2);
+            }
+            else
+            {
+                transform.position += (Vector3) new Vector2(unitUp,unitDown);
+                playerLayer2.transform.position += (Vector3) new Vector2(unitUp,unitDown);
+            }
         }
     }
 
