@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3334224423640641363}
   - component: {fileID: 5858753324352922109}
   - component: {fileID: 481309026298798387}
+  - component: {fileID: 755850165065318749}
   m_Layer: 8
   m_Name: MovementTile
   m_TagString: Untagged
@@ -99,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDirection: {x: 0, y: 1}
+  linkedTile: {fileID: 0}
 --- !u!61 &481309026298798387
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -144,3 +146,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &755850165065318749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4144824410005020175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1a5f7b1c0040514db8a229d9b196ac3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

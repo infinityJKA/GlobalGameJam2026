@@ -25,7 +25,7 @@ public class InputManager : MonoBehaviour
     {
         if (gm.controlState == ControlState.Overworld)
         {
-            bool validInteract;
+            Debug.Log("Checking to push...");
             string layerToCheck;
             if(gm.playerManager.isMasked == false){
                 layerToCheck = "Layer1";
@@ -34,24 +34,93 @@ public class InputManager : MonoBehaviour
                 layerToCheck = "Layer2";
             }
 
-            RaycastHit castHit;
+            RaycastHit2D hit;
 
             if(gm.playerManager.facing == PlayerFacing.Up)
             {
-                validInteract = Physics2D.Raycast(gm.playerManager.transform.position, Vector2.up, 1.1f, LayerMask.GetMask(layerToCheck));  
+                hit = Physics2D.Raycast(gm.playerManager.transform.position, Vector2.up, 1.1f, LayerMask.GetMask(layerToCheck));  
             }
             else if(gm.playerManager.facing == PlayerFacing.Down)
             {
-                validInteract = Physics2D.Raycast(gm.playerManager.transform.position, Vector2.down, 1.1f, LayerMask.GetMask(layerToCheck));   
+                hit = Physics2D.Raycast(gm.playerManager.transform.position, Vector2.down, 1.1f, LayerMask.GetMask(layerToCheck));   
             }
             else if(gm.playerManager.facing == PlayerFacing.Left)
             {
-                validInteract = Physics2D.Raycast(gm.playerManager.transform.position, Vector2.left, 1.1f, LayerMask.GetMask(layerToCheck));   
+                hit = Physics2D.Raycast(gm.playerManager.transform.position, Vector2.left, 1.1f, LayerMask.GetMask(layerToCheck));   
             }
-            else if(gm.playerManager.facing == PlayerFacing.Right)
+            else
             {
-                validInteract = Physics2D.Raycast(gm.playerManager.transform.position, Vector2.right, 1.1f, LayerMask.GetMask(layerToCheck));   
+                hit = Physics2D.Raycast(gm.playerManager.transform.position, Vector2.right, 1.1f, LayerMask.GetMask(layerToCheck));   
             }
+
+            if (hit)
+            {
+                GameObject hitObject = hit.collider.gameObject;
+
+                if (hitObject.GetComponent<Pushable>())
+                {
+
+                    Debug.Log("Interacted with a pushable object");
+
+                    hitObject.GetComponent<BoxCollider2D>().enabled = false;
+
+                    RaycastHit2D objectBlocking;
+
+                    if(gm.playerManager.facing == PlayerFacing.Up)
+                    {
+                        objectBlocking = Physics2D.Raycast(hitObject.transform.position, Vector2.up, 1.1f, LayerMask.GetMask(layerToCheck));  
+                    }
+                    else if(gm.playerManager.facing == PlayerFacing.Down)
+                    {
+                        objectBlocking = Physics2D.Raycast(hitObject.transform.position, Vector2.down, 1.1f, LayerMask.GetMask(layerToCheck));   
+                    }
+                    else if(gm.playerManager.facing == PlayerFacing.Left)
+                    {
+                        objectBlocking = Physics2D.Raycast(hitObject.transform.position, Vector2.left, 1.1f, LayerMask.GetMask(layerToCheck));   
+                    }
+                    else
+                    {
+                        objectBlocking = Physics2D.Raycast(hitObject.transform.position, Vector2.right, 1.1f, LayerMask.GetMask(layerToCheck));   
+                    }
+
+                    if (!objectBlocking)
+                    {
+                        Debug.Log("Valid push");
+
+                        Vector3 newPosition = hitObject.transform.position;
+
+                        if(gm.playerManager.facing == PlayerFacing.Up)
+                        {
+                            newPosition += new Vector3(0, 1, 0);
+                        }
+                        else if(gm.playerManager.facing == PlayerFacing.Down)
+                        {
+                            newPosition += new Vector3(0, -1, 0);
+                        }
+                        else if(gm.playerManager.facing == PlayerFacing.Left)
+                        {
+                            newPosition += new Vector3(-1, 0, 0);
+                        }
+                        else
+                        {
+                            newPosition += new Vector3(1, 0, 0);
+                        }
+
+                        hitObject.transform.position = newPosition;
+                    }
+                    else
+                    {
+                        Debug.Log("Can't push, "+objectBlocking.transform.name+" is blocking the way");
+                    }
+
+                    hitObject.GetComponent<BoxCollider2D>().enabled = true;
+                }
+            }
+            else
+            {
+                Debug.Log("Nothing to push");
+            }
+
         }
     }
 
@@ -59,7 +128,7 @@ public class InputManager : MonoBehaviour
     {
         if (gm.controlState == ControlState.Overworld)
         {
-            bool invalidSwitch;
+            RaycastHit2D invalidSwitch;
             if(gm.playerManager.isMasked == false){
                 invalidSwitch = Physics2D.Raycast(gm.playerManager.playerLayer2.transform.position, Vector2.up, 0.1f, LayerMask.GetMask("Layer2"));
             }
@@ -67,7 +136,7 @@ public class InputManager : MonoBehaviour
                 invalidSwitch = Physics2D.Raycast(gm.playerManager.gameObject.transform.position, Vector2.up, 0.1f, LayerMask.GetMask("Layer1"));
             }
 
-            if (invalidSwitch)
+            if (invalidSwitch && !invalidSwitch.transform.gameObject.GetComponent<MovementTile>())
             {
                 Debug.Log("Can't switch right now!");
                 return;
@@ -94,7 +163,11 @@ public class InputManager : MonoBehaviour
                 gm.playerManager.layer1.tilemapRenderer.sortingOrder = -5;
 
                 gm.playerManager.spriteRenderer.sortingOrder = -2;
-                gm.playerManager.spriteRenderer2.sortingOrder = 1;
+                gm.playerManager.spriteRenderer2.sortingOrder = 2;
+
+                gm.playerManager.goal.spriteRenderer.sortingOrder = -10;
+                gm.playerManager.goal.layer2SpriteRenderer.sortingOrder = 1;
+
 
                 gm.playerManager.isMasked = true;
             }
@@ -117,10 +190,16 @@ public class InputManager : MonoBehaviour
                 gm.playerManager.layer2.tilemapRenderer.sortingOrder = -5;
 
                 gm.playerManager.spriteRenderer2.sortingOrder = -2;
-                gm.playerManager.spriteRenderer.sortingOrder = 1;
+                gm.playerManager.spriteRenderer.sortingOrder = 2;
+
+                gm.playerManager.goal.spriteRenderer.sortingOrder = 1;
+                gm.playerManager.goal.layer2SpriteRenderer.sortingOrder = -10;
 
                 gm.playerManager.isMasked = false;
             }
+
+            gm.playerManager.gameObject.SetActive(false);
+            gm.playerManager.gameObject.SetActive(true);
         }
     }
 
@@ -128,7 +207,7 @@ public class InputManager : MonoBehaviour
     {
         if (gm.controlState == ControlState.Overworld)
         {
-            gm.playerManager.Move(Vector2.up, false, 0, 1);
+            gm.playerManager.Move(Vector2.up, false, 0, 1, null);
             gm.playerManager.facing = PlayerFacing.Up;
         }
     }
@@ -137,7 +216,7 @@ public class InputManager : MonoBehaviour
     {
         if (gm.controlState == ControlState.Overworld)
         {
-            gm.playerManager.Move(Vector2.down, false, 0, -1);
+            gm.playerManager.Move(Vector2.down, false, 0, -1, null);
             gm.playerManager.facing = PlayerFacing.Down;
         }
     }
@@ -146,7 +225,7 @@ public class InputManager : MonoBehaviour
     {
         if (gm.controlState == ControlState.Overworld)
         {
-            gm.playerManager.Move(Vector2.left, false, -1, 0);
+            gm.playerManager.Move(Vector2.left, false, -1, 0, null);
             gm.playerManager.facing = PlayerFacing.Left;
         }
     }
@@ -155,7 +234,7 @@ public class InputManager : MonoBehaviour
     {
         if (gm.controlState == ControlState.Overworld)
         {
-            gm.playerManager.Move(Vector2.right, false, 1, 0);
+            gm.playerManager.Move(Vector2.right, false, 1, 0, null);
             gm.playerManager.facing = PlayerFacing.Right;
         }
     }
