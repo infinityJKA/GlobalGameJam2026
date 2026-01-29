@@ -11,6 +11,7 @@ public class PlayerManager : MonoBehaviour
     public GameObject playerLayer2;
 
     public LayerClass layer1, layer2;
+    public Goal goal;
     public bool isMasked = false;
     public PlayerFacing facing = PlayerFacing.Down;
 

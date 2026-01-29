@@ -163,7 +163,11 @@ public class InputManager : MonoBehaviour
                 gm.playerManager.layer1.tilemapRenderer.sortingOrder = -5;
 
                 gm.playerManager.spriteRenderer.sortingOrder = -2;
-                gm.playerManager.spriteRenderer2.sortingOrder = 1;
+                gm.playerManager.spriteRenderer2.sortingOrder = 2;
+
+                gm.playerManager.goal.spriteRenderer.sortingOrder = -10;
+                gm.playerManager.goal.layer2SpriteRenderer.sortingOrder = 1;
+
 
                 gm.playerManager.isMasked = true;
             }
@@ -186,7 +190,10 @@ public class InputManager : MonoBehaviour
                 gm.playerManager.layer2.tilemapRenderer.sortingOrder = -5;
 
                 gm.playerManager.spriteRenderer2.sortingOrder = -2;
-                gm.playerManager.spriteRenderer.sortingOrder = 1;
+                gm.playerManager.spriteRenderer.sortingOrder = 2;
+
+                gm.playerManager.goal.spriteRenderer.sortingOrder = 1;
+                gm.playerManager.goal.layer2SpriteRenderer.sortingOrder = -10;
 
                 gm.playerManager.isMasked = false;
             }

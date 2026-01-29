@@ -305,6 +305,11 @@ Transform:
   - {fileID: 1942245307}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &697276557 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9187999789660120088, guid: 54cc1d695b5ccca47b60652f3e633cf8, type: 3}
+  m_PrefabInstance: {fileID: 8505856064659981886}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1046722588
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -397,7 +402,7 @@ GameObject:
   - component: {fileID: 1064027323}
   - component: {fileID: 1064027325}
   m_Layer: 0
-  m_Name: Laye2Goal
+  m_Name: Layer2Goal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -922,6 +927,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 697276557}
   - {fileID: 1432312940}
   - {fileID: 1934543180}
   - {fileID: 1533159364}
@@ -2489,7 +2495,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1460978347}
     m_Modifications:
     - target: {fileID: 6262066793168244653, guid: 54cc1d695b5ccca47b60652f3e633cf8, type: 3}
       propertyPath: m_Sprite
@@ -2511,6 +2517,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerStuff
       objectReference: {fileID: 0}
+    - target: {fileID: 6525349414607948499, guid: 54cc1d695b5ccca47b60652f3e633cf8, type: 3}
+      propertyPath: goal
+      value: 
+      objectReference: {fileID: 1934543181}
     - target: {fileID: 6525349414607948499, guid: 54cc1d695b5ccca47b60652f3e633cf8, type: 3}
       propertyPath: layer1
       value: 
@@ -2569,7 +2579,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 326108786}
-  - {fileID: 8505856064659981886}
   - {fileID: 1460978347}
   - {fileID: 1575022930}
   - {fileID: 1754129137}
