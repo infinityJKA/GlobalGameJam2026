@@ -7,7 +7,7 @@ public class LayerClass : MonoBehaviour
 {
     public List<SpriteRenderer> objects;
     public SpriteRenderer bg;
-    public TilemapRenderer tilemapRenderer;
+    public TilemapRenderer tilemapRenderer, noCollisionRenderer;
 
     void Start()
     {

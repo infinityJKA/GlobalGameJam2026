@@ -151,7 +151,8 @@ public class InputManager : MonoBehaviour
                     Debug.Log(s.gameObject.name +" edited priority");
                 }
                 gm.playerManager.layer2.tilemapRenderer.sortingOrder = 0;
-                gm.playerManager.layer2.bg.sortingOrder = -1;
+                gm.playerManager.layer2.noCollisionRenderer.sortingOrder = -1;
+                gm.playerManager.layer2.bg.sortingOrder = -2;
 
                 foreach (SpriteRenderer s in gm.playerManager.layer1.objects)
                 {
@@ -161,6 +162,7 @@ public class InputManager : MonoBehaviour
                 }
                 gm.playerManager.layer1.bg.sortingOrder = -6;
                 gm.playerManager.layer1.tilemapRenderer.sortingOrder = -5;
+                gm.playerManager.layer1.noCollisionRenderer.sortingOrder = -5;
 
                 gm.playerManager.spriteRenderer.sortingOrder = -2;
                 gm.playerManager.spriteRenderer2.sortingOrder = 2;
@@ -179,7 +181,8 @@ public class InputManager : MonoBehaviour
                     Debug.Log(s.gameObject.name +" edited priority");
                 }
                 gm.playerManager.layer1.tilemapRenderer.sortingOrder = 0;
-                gm.playerManager.layer1.bg.sortingOrder = -1;
+                gm.playerManager.layer1.noCollisionRenderer.sortingOrder = -1;
+                gm.playerManager.layer1.bg.sortingOrder = -2;
 
                 foreach (SpriteRenderer s in gm.playerManager.layer2.objects)
                 {
@@ -188,6 +191,7 @@ public class InputManager : MonoBehaviour
                 }
                 gm.playerManager.layer2.bg.sortingOrder = -6;
                 gm.playerManager.layer2.tilemapRenderer.sortingOrder = -5;
+                gm.playerManager.layer2.noCollisionRenderer.sortingOrder = -5;
 
                 gm.playerManager.spriteRenderer2.sortingOrder = -2;
                 gm.playerManager.spriteRenderer.sortingOrder = 2;
