@@ -25,6 +25,10 @@ public class PlayerManager : MonoBehaviour
         GameManager.instance.playerManager = this;
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer2 = playerLayer2.GetComponent<SpriteRenderer>();
+        
+        GameManager.instance.audioManager.StartMusic("LevelTheme","LevelThemeMasked");
+
+        UpdateSprite();
     }
 
     public void Move(Vector2 dir, bool isForced, int unitUp, int unitDown, GameObject disableOnClose)

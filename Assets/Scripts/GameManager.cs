@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public ControlState controlState;
+    public AudioManager audioManager;
     [SerializeField] GameObject eventSystem;
 
     [Header("Automatic (don't edit in inspector)")]

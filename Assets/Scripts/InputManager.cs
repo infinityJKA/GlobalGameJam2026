@@ -172,6 +172,7 @@ public class InputManager : MonoBehaviour
 
 
                 gm.playerManager.isMasked = true;
+                gm.audioManager.SwitchMusicSource(true);
             }
             else
             {
@@ -200,6 +201,7 @@ public class InputManager : MonoBehaviour
                 gm.playerManager.goal.layer2SpriteRenderer.sortingOrder = -10;
 
                 gm.playerManager.isMasked = false;
+                gm.audioManager.SwitchMusicSource(false);
             }
 
             gm.playerManager.gameObject.SetActive(false);
