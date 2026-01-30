@@ -17,6 +17,8 @@ public class PlayerManager : MonoBehaviour
 
     public SpriteRenderer spriteRenderer, spriteRenderer2;
 
+    public Sprite up, upMasked, down, downMasked, left, leftMasked, right, rightMasked;
+
     void Start()
     {
         GameManager.instance.playerManager = this;
@@ -98,6 +100,53 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    public void UpdateSprite()
+    {
+        if(isMasked)
+        {
+            switch(facing)
+            {
+                case PlayerFacing.Up:
+                    spriteRenderer.sprite = upMasked;
+                    spriteRenderer2.sprite = upMasked;
+                    break;
+                case PlayerFacing.Down:
+                    spriteRenderer.sprite = downMasked;
+                    spriteRenderer2.sprite = downMasked;
+                    break;
+                case PlayerFacing.Left:
+                    spriteRenderer.sprite = leftMasked;
+                    spriteRenderer2.sprite = leftMasked;
+                    break;
+                case PlayerFacing.Right:
+                    spriteRenderer.sprite = rightMasked;
+                    spriteRenderer2.sprite = rightMasked;
+                    break;
+            }
+        }
+        else
+        {
+            switch(facing)
+            {
+                case PlayerFacing.Up:
+                    spriteRenderer.sprite = up;
+                    spriteRenderer2.sprite = up;
+                    break;
+                case PlayerFacing.Down:
+                    spriteRenderer.sprite = down;
+                    spriteRenderer2.sprite = down;
+                    break;
+                case PlayerFacing.Left:
+                    spriteRenderer.sprite = left;
+                    spriteRenderer2.sprite = left;
+                    break;
+                case PlayerFacing.Right:
+                    spriteRenderer.sprite = right;
+                    spriteRenderer2.sprite = right;
+                    break;
+            }
+        }
+    }
 
 }
 

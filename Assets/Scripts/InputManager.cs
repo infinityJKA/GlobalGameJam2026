@@ -201,6 +201,8 @@ public class InputManager : MonoBehaviour
             gm.playerManager.gameObject.SetActive(false);
             gm.playerManager.gameObject.SetActive(true);
         }
+
+        gm.playerManager.UpdateSprite();
     }
 
     private void action_UP(InputAction.CallbackContext obj)
@@ -209,6 +211,7 @@ public class InputManager : MonoBehaviour
         {
             gm.playerManager.Move(Vector2.up, false, 0, 1, null);
             gm.playerManager.facing = PlayerFacing.Up;
+            gm.playerManager.UpdateSprite();
         }
     }
 
@@ -218,6 +221,7 @@ public class InputManager : MonoBehaviour
         {
             gm.playerManager.Move(Vector2.down, false, 0, -1, null);
             gm.playerManager.facing = PlayerFacing.Down;
+            gm.playerManager.UpdateSprite();
         }
     }
 
@@ -227,6 +231,7 @@ public class InputManager : MonoBehaviour
         {
             gm.playerManager.Move(Vector2.left, false, -1, 0, null);
             gm.playerManager.facing = PlayerFacing.Left;
+            gm.playerManager.UpdateSprite();
         }
     }
 
@@ -236,6 +241,7 @@ public class InputManager : MonoBehaviour
         {
             gm.playerManager.Move(Vector2.right, false, 1, 0, null);
             gm.playerManager.facing = PlayerFacing.Right;
+            gm.playerManager.UpdateSprite();
         }
     }
 
