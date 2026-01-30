@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Goal : MonoBehaviour
@@ -21,6 +22,7 @@ public class Goal : MonoBehaviour
         {
             Debug.Log("Level complete!");
             GameManager.instance.controlState = ControlState.None;
+            GameManager.instance.playerManager.levelUiCanvas.SetActive(true);
         }
     }
 }

@@ -16,6 +16,7 @@ public class PlayerManager : MonoBehaviour
     public PlayerFacing facing = PlayerFacing.Down;
 
     public SpriteRenderer spriteRenderer, spriteRenderer2;
+    public GameObject levelUiCanvas;
 
     public Sprite up, upMasked, down, downMasked, left, leftMasked, right, rightMasked;
 
