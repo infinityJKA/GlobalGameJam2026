@@ -30,6 +30,8 @@ public class PlayerManager : MonoBehaviour
         GameManager.instance.audioManager.StartMusic("LevelTheme","LevelThemeMasked");
 
         UpdateSprite();
+
+        GameManager.instance.controlState = ControlState.Overworld;
     }
 
     public void Move(Vector2 dir, bool isForced, int unitUp, int unitDown, GameObject disableOnClose)
