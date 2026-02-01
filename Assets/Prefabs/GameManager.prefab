@@ -440,6 +440,7 @@ MonoBehaviour:
   ref_down: {fileID: 8533367970851228041, guid: 6b78817913d68bc438b591f6f7b09cef, type: 3}
   ref_left: {fileID: 6461612999710838412, guid: 6b78817913d68bc438b591f6f7b09cef, type: 3}
   ref_right: {fileID: 3853490861901490355, guid: 6b78817913d68bc438b591f6f7b09cef, type: 3}
+  ref_reset: {fileID: -2068160129068378877, guid: 6b78817913d68bc438b591f6f7b09cef, type: 3}
   gm: {fileID: 7366310987406694846}
 --- !u!114 &763435198884548214
 MonoBehaviour:

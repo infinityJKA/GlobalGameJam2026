@@ -16,6 +16,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Reset",
+                    "type": "Button",
+                    "id": "bdc289a0-f22f-4465-8796-be9187dce93c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Mask",
                     "type": "Button",
                     "id": "2e090cda-4b0a-4ba3-8d3d-494f596cd43d",
@@ -75,6 +84,17 @@
                 },
                 {
                     "name": "",
+                    "id": "c3ab2abb-48aa-49ec-9fe1-82e173e2288a",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Reset",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "ba1eef99-6e75-474d-9d6e-8cb2ceb7ca03",
                     "path": "<Keyboard>/x",
                     "interactions": "",
@@ -88,17 +108,6 @@
                     "name": "",
                     "id": "ddd1e4ae-ad66-4bae-a24e-47cd897d5797",
                     "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Up",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "97679353-02db-44a7-88fa-7d24b3a1dc25",
-                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -152,17 +161,6 @@
                 },
                 {
                     "name": "",
-                    "id": "726f7dd8-83de-406d-a1ab-ff485a1e563c",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Down",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "4fc4e892-eb86-42b1-9c56-43800453f5fc",
                     "path": "",
                     "interactions": "",
@@ -185,30 +183,8 @@
                 },
                 {
                     "name": "",
-                    "id": "54e6cf94-8110-448f-83fd-b66c3601492a",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Left",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "0f29ca93-7fca-4ab8-a92a-42b79e73fa9e",
                     "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Right",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2e10f295-8784-4a03-953d-94fff5f33489",
-                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

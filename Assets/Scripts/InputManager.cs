@@ -7,18 +7,28 @@ using UnityEngine.SceneManagement;
 
 public class InputManager : MonoBehaviour
 {
-    [SerializeField] InputActionReference ref_interact, ref_mask, ref_up, ref_down, ref_left, ref_right;
+    [SerializeField] InputActionReference ref_interact, ref_mask, ref_up, ref_down, ref_left, ref_right, ref_reset;
     public GameManager gm;
 
     void OnEnable()
     {
         ref_interact.action.started += action_INTERACT;
         ref_mask.action.started += action_MASK;
+        ref_reset.action.started += action_RESET;
         
         ref_up.action.started += action_UP;
         ref_down.action.started += action_DOWN;
         ref_left.action.started += action_LEFT;
         ref_right.action.started += action_RIGHT;
+    }
+
+    private void action_RESET(InputAction.CallbackContext obj)
+    {
+        if (gm.controlState == ControlState.Overworld || gm.controlState == ControlState.WinMenu)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            gm.controlState = ControlState.Overworld;
+        }
     }
 
     private void action_INTERACT(InputAction.CallbackContext obj)
