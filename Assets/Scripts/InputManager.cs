@@ -36,31 +36,33 @@ public class InputManager : MonoBehaviour
         if (gm.controlState == ControlState.Overworld)
         {
             Debug.Log("Checking to push...");
-            string layerToCheck;
+            string layerToCheck, pushCheck;
             if(gm.playerManager.isMasked == false){
                 layerToCheck = "Layer1";
+                pushCheck = "Push1";
             }
             else{
                 layerToCheck = "Layer2";
+                pushCheck = "Push2";
             }
 
             RaycastHit2D hit;
 
             if(gm.playerManager.facing == PlayerFacing.Up)
             {
-                hit = Physics2D.Raycast(gm.playerManager.transform.position, Vector2.up, 1.1f, LayerMask.GetMask(layerToCheck,"Don't Collide"));  
+                hit = Physics2D.Raycast(gm.playerManager.transform.position, Vector2.up, 1.1f, LayerMask.GetMask(layerToCheck,pushCheck));  
             }
             else if(gm.playerManager.facing == PlayerFacing.Down)
             {
-                hit = Physics2D.Raycast(gm.playerManager.transform.position, Vector2.down, 1.1f, LayerMask.GetMask(layerToCheck,"Don't Collide"));   
+                hit = Physics2D.Raycast(gm.playerManager.transform.position, Vector2.down, 1.1f, LayerMask.GetMask(layerToCheck,pushCheck));   
             }
             else if(gm.playerManager.facing == PlayerFacing.Left)
             {
-                hit = Physics2D.Raycast(gm.playerManager.transform.position, Vector2.left, 1.1f, LayerMask.GetMask(layerToCheck,"Don't Collide"));   
+                hit = Physics2D.Raycast(gm.playerManager.transform.position, Vector2.left, 1.1f, LayerMask.GetMask(layerToCheck,pushCheck));   
             }
             else
             {
-                hit = Physics2D.Raycast(gm.playerManager.transform.position, Vector2.right, 1.1f, LayerMask.GetMask(layerToCheck,"Don't Collide"));   
+                hit = Physics2D.Raycast(gm.playerManager.transform.position, Vector2.right, 1.1f, LayerMask.GetMask(layerToCheck,pushCheck));   
             }
 
             if (hit)
@@ -117,6 +119,7 @@ public class InputManager : MonoBehaviour
                         }
 
                         hitObject.transform.position = newPosition;
+                        Debug.Log("Pushed "+hitObject.transform.name);
 
                         gm.audioManager.PlaySfx("Push");
                     }
@@ -132,13 +135,13 @@ public class InputManager : MonoBehaviour
                     GameObject linked = hitObject.GetComponent<Pushable>().linkedObject;
                     if(linked != null)
                     {
-                        Debug.Log("Has linked object to push");
+                        Debug.Log("Has linked object to push ("+linked.transform.name+")");
 
                         linked.GetComponent<BoxCollider2D>().enabled = false;
 
                         string layerToCheckLinked;
 
-                        if(gm.playerManager.isMasked == false){
+                        if(layerToCheck == "Layer1"){
                             layerToCheckLinked = "Layer2";
                         }
                         else{
@@ -188,11 +191,13 @@ public class InputManager : MonoBehaviour
 
                             linked.transform.position = newPosition;
 
+                            Debug.Log("Pushed "+linked.transform.name);
+
                             gm.audioManager.PlaySfx("Push");
                         }
                         else
                         {
-                            Debug.Log("Can't push, "+objectBlockingLinked.transform.name+" is blocking the way");
+                            Debug.Log("Can't push linked, "+objectBlockingLinked.transform.name+" is blocking the way");
                         }
                         linked.GetComponent<BoxCollider2D>().enabled = true;
                     }

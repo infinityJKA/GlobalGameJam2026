@@ -9,7 +9,6 @@ public class MovementTile : MonoBehaviour
 {
     [Header("Only ever have a 1 and a 0, and one of each")]
     public Vector2 moveDirection;
-    public MovementTile linkedTile;
     public bool isMaskedLayer;
 
     private BoxCollider2D thisCollider;
@@ -30,8 +29,10 @@ public class MovementTile : MonoBehaviour
         }
         if (col.gameObject.CompareTag("Pushable") && col.gameObject.GetComponent<MovementTile>() == null)
         {
-            Debug.Log("Pushable Trigger entered");
-            ForceMove(moveDirection, true, (int)moveDirection.x, (int)moveDirection.y, col.gameObject, isMaskedLayer ? "Layer1" : "Layer2");
+            if( (col.gameObject.layer == LayerMask.NameToLayer("Layer1") && !isMaskedLayer) || (col.gameObject.layer == LayerMask.NameToLayer("Layer2") && isMaskedLayer) ){
+                Debug.Log("Pushable Trigger entered on layer " + (isMaskedLayer ? "Layer2" : "Layer1") + " ("+col.gameObject.name+")");
+                ForceMove(moveDirection, true, (int)moveDirection.x, (int)moveDirection.y, col.gameObject, isMaskedLayer ? "Layer2" : "Layer1");
+            }
         }
     }
 
@@ -53,11 +54,11 @@ public class MovementTile : MonoBehaviour
         }
         else{Debug.Log("hitClose: null");}
 
-        objToMove.SetActive(true);
-
         hitFar = Physics2D.Raycast(transform.position, dir, 2.1f, LayerMask.GetMask(layer));
         if(hitFar){Debug.Log("hitFar: " + hitFar.transform.gameObject.name);}
         else{Debug.Log("hitFar: null");}
+
+        objToMove.SetActive(true);
 
         if(hitClose){
             if (hitClose.transform.gameObject.GetComponent<BoxCollider2D>()) {hitClose.transform.gameObject.GetComponent<BoxCollider2D>().enabled = true;}

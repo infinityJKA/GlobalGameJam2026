@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5858753324352922109}
   - component: {fileID: 481309026298798387}
   - component: {fileID: 755850165065318749}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: MovementTile
   m_TagString: Pushable
   m_Icon: {fileID: 0}
