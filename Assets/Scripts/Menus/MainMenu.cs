@@ -26,6 +26,41 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("Level3");
     }
 
+    public void playLevel4()
+    {
+        SceneManager.LoadScene("Level4");
+    }
+
+    public void playLevel5()
+    {
+        SceneManager.LoadScene("Level5");
+    }
+
+    public void playLevel6()
+    {
+        SceneManager.LoadScene("Level6");
+    }
+
+    public void playLevel7()
+    {
+        SceneManager.LoadScene("Level7");
+    }
+
+    public void playLevel8()
+    {
+        SceneManager.LoadScene("Level8");
+    }
+
+    public void playLevel9()
+    {
+        SceneManager.LoadScene("Level9");
+    }
+
+    public void playLevel10()
+    {
+        SceneManager.LoadScene("Level10");
+    }
+
     public void quitGame()
     {
         Application.Quit();
