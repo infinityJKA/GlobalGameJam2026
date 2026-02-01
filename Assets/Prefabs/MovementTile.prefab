@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 755850165065318749}
   m_Layer: 8
   m_Name: MovementTile
-  m_TagString: Untagged
+  m_TagString: Pushable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -159,3 +159,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a5f7b1c0040514db8a229d9b196ac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  linkedObject: {fileID: 0}

@@ -48,19 +48,19 @@ public class InputManager : MonoBehaviour
 
             if(gm.playerManager.facing == PlayerFacing.Up)
             {
-                hit = Physics2D.Raycast(gm.playerManager.transform.position, Vector2.up, 1.1f, LayerMask.GetMask(layerToCheck));  
+                hit = Physics2D.Raycast(gm.playerManager.transform.position, Vector2.up, 1.1f, LayerMask.GetMask(layerToCheck,"Don't Collide"));  
             }
             else if(gm.playerManager.facing == PlayerFacing.Down)
             {
-                hit = Physics2D.Raycast(gm.playerManager.transform.position, Vector2.down, 1.1f, LayerMask.GetMask(layerToCheck));   
+                hit = Physics2D.Raycast(gm.playerManager.transform.position, Vector2.down, 1.1f, LayerMask.GetMask(layerToCheck,"Don't Collide"));   
             }
             else if(gm.playerManager.facing == PlayerFacing.Left)
             {
-                hit = Physics2D.Raycast(gm.playerManager.transform.position, Vector2.left, 1.1f, LayerMask.GetMask(layerToCheck));   
+                hit = Physics2D.Raycast(gm.playerManager.transform.position, Vector2.left, 1.1f, LayerMask.GetMask(layerToCheck,"Don't Collide"));   
             }
             else
             {
-                hit = Physics2D.Raycast(gm.playerManager.transform.position, Vector2.right, 1.1f, LayerMask.GetMask(layerToCheck));   
+                hit = Physics2D.Raycast(gm.playerManager.transform.position, Vector2.right, 1.1f, LayerMask.GetMask(layerToCheck,"Don't Collide"));   
             }
 
             if (hit)
@@ -93,7 +93,7 @@ public class InputManager : MonoBehaviour
                         objectBlocking = Physics2D.Raycast(hitObject.transform.position, Vector2.right, 1.1f, LayerMask.GetMask(layerToCheck));   
                     }
 
-                    if (!objectBlocking)
+                    if (!objectBlocking || objectBlocking.transform.gameObject.GetComponent<MovementTile>() != null)
                     {
                         Debug.Log("Valid push");
 
@@ -126,11 +126,85 @@ public class InputManager : MonoBehaviour
                     }
 
                     hitObject.GetComponent<BoxCollider2D>().enabled = true;
+
+                    // check for linked object to move //////////////////////////////////
+
+                    GameObject linked = hitObject.GetComponent<Pushable>().linkedObject;
+                    if(linked != null)
+                    {
+                        Debug.Log("Has linked object to push");
+
+                        linked.GetComponent<BoxCollider2D>().enabled = false;
+
+                        string layerToCheckLinked;
+
+                        if(gm.playerManager.isMasked == false){
+                            layerToCheckLinked = "Layer2";
+                        }
+                        else{
+                            layerToCheckLinked = "Layer1";
+                        }
+
+                        RaycastHit2D objectBlockingLinked;
+
+                        if(gm.playerManager.facing == PlayerFacing.Up)
+                        {
+                            objectBlockingLinked = Physics2D.Raycast(linked.transform.position, Vector2.up, 1.1f, LayerMask.GetMask(layerToCheckLinked));  
+                        }
+                        else if(gm.playerManager.facing == PlayerFacing.Down)
+                        {
+                            objectBlockingLinked = Physics2D.Raycast(linked.transform.position, Vector2.down, 1.1f, LayerMask.GetMask(layerToCheckLinked));   
+                        }
+                        else if(gm.playerManager.facing == PlayerFacing.Left)
+                        {
+                            objectBlockingLinked = Physics2D.Raycast(linked.transform.position, Vector2.left, 1.1f, LayerMask.GetMask(layerToCheckLinked));   
+                        }
+                        else
+                        {
+                            objectBlockingLinked = Physics2D.Raycast(linked.transform.position, Vector2.right, 1.1f, LayerMask.GetMask(layerToCheckLinked));   
+                        }
+
+                        if (!objectBlockingLinked || objectBlockingLinked.transform.gameObject.GetComponent<MovementTile>() != null)
+                        {
+                            Debug.Log("Valid push (linked object)");
+
+                            Vector3 newPosition = linked.transform.position;
+                            if(gm.playerManager.facing == PlayerFacing.Up)
+                            {
+                                newPosition += new Vector3(0, 1, 0);
+                            }
+                            else if(gm.playerManager.facing == PlayerFacing.Down)
+                            {
+                                newPosition += new Vector3(0, -1, 0);
+                            }
+                            else if(gm.playerManager.facing == PlayerFacing.Left)
+                            {
+                                newPosition += new Vector3(-1, 0, 0);
+                            }
+                            else
+                            {
+                                newPosition += new Vector3(1, 0, 0);
+                            }
+
+                            linked.transform.position = newPosition;
+
+                            gm.audioManager.PlaySfx("Push");
+                        }
+                        else
+                        {
+                            Debug.Log("Can't push, "+objectBlockingLinked.transform.name+" is blocking the way");
+                        }
+                        linked.GetComponent<BoxCollider2D>().enabled = true;
+                    }
+                }
+                else
+                {
+                    Debug.Log(hit.transform.name + " is not pushable");
                 }
             }
             else
             {
-                Debug.Log("Nothing to push");
+                Debug.Log("Nothing to push (no raycast hit)");
             }
 
         }

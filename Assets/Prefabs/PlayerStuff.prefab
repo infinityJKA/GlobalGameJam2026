@@ -755,7 +755,7 @@ GameObject:
   - component: {fileID: 6525349414607948499}
   - component: {fileID: 8340475313268882901}
   - component: {fileID: 4537946405406197544}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -902,7 +902,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9, y: 0.9}
+  m_Size: {x: 0.91, y: 0.91}
   m_EdgeRadius: 0
 --- !u!50 &4537946405406197544
 Rigidbody2D:

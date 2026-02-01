@@ -1157,6 +1157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a5f7b1c0040514db8a229d9b196ac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  linkedObject: {fileID: 0}
 --- !u!114 &1141019709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3320,7 +3321,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4144824410005020175, guid: 7226110a7f8df1b4b9606bc457c28851, type: 3}
       propertyPath: m_Name
-      value: MovementTile
+      value: MovementTileONLY
+      objectReference: {fileID: 0}
+    - target: {fileID: 4144824410005020175, guid: 7226110a7f8df1b4b9606bc457c28851, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5858753324352922109, guid: 7226110a7f8df1b4b9606bc457c28851, type: 3}
       propertyPath: moveDirection.x
