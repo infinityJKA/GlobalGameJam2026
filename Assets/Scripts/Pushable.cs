@@ -5,5 +5,6 @@ using UnityEngine;
 
 public class Pushable : MonoBehaviour
 {
+    public GameObject linkedObject;
     
 }

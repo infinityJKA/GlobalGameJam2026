@@ -12,6 +12,13 @@ public class MovementTile : MonoBehaviour
     public MovementTile linkedTile;
     public bool isMaskedLayer;
 
+    private BoxCollider2D thisCollider;
+
+    void Start()
+    {
+        thisCollider = GetComponent<BoxCollider2D>();
+    }
+
     void OnTriggerEnter2D(Collider2D col)
     {
         if(col.gameObject.CompareTag("Player"))
@@ -21,7 +28,7 @@ public class MovementTile : MonoBehaviour
                 GameManager.instance.playerManager.Move(moveDirection, true, (int)moveDirection.x, (int)moveDirection.y, this.gameObject);
             }
         }
-        if (col.gameObject.CompareTag("Pushable"))
+        if (col.gameObject.CompareTag("Pushable") && col.gameObject.GetComponent<MovementTile>() == null)
         {
             Debug.Log("Pushable Trigger entered");
             ForceMove(moveDirection, true, (int)moveDirection.x, (int)moveDirection.y, col.gameObject, isMaskedLayer ? "Layer1" : "Layer2");
@@ -30,6 +37,8 @@ public class MovementTile : MonoBehaviour
 
     public void ForceMove(Vector2 dir, bool isForced, int unitUp, int unitDown, GameObject objToMove, string layer)
     {
+        thisCollider.enabled = false;
+
         RaycastHit2D hitClose;
         RaycastHit2D hitFar;
 
@@ -72,5 +81,7 @@ public class MovementTile : MonoBehaviour
         {
             Debug.Log("No valid move");
         }
+
+        thisCollider.enabled = true;
     }
 }
