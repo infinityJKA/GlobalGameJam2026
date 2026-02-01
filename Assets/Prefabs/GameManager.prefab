@@ -485,7 +485,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controlState: 1
   audioManager: {fileID: 2260392804175844150}
-  eventSystem: {fileID: 0}
   playerManager: {fileID: 0}
 --- !u!114 &2260392804175844150
 MonoBehaviour:
@@ -504,7 +503,15 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 81c2a54dbdf4369478e5433ebfeebd2f, type: 3}
   - name: LevelThemeMasked
     clip: {fileID: 8300000, guid: b673e0ad7d8325748b6355be1a53a740, type: 3}
-  sfx: []
+  sfx:
+  - name: Move
+    clip: {fileID: 8300000, guid: 0621e09377c58644b992bbacf4932d8e, type: 3}
+  - name: Push
+    clip: {fileID: 8300000, guid: 2c30154e804e0ab4b81e5baf0910d401, type: 3}
+  - name: Mask
+    clip: {fileID: 8300000, guid: 3e970272744f65f4fb5e01b0ae9fbb12, type: 3}
+  - name: Goal
+    clip: {fileID: 8300000, guid: 5ea14db459cda3241ab705b3ca6e2d4c, type: 3}
   sfxSource: {fileID: 3853229174061821228}
   musicSource1: {fileID: 4974448549544604688}
   musicSource2: {fileID: 7437973951525337773}

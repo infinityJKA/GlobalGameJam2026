@@ -107,6 +107,8 @@ public class InputManager : MonoBehaviour
                         }
 
                         hitObject.transform.position = newPosition;
+
+                        gm.audioManager.PlaySfx("Push");
                     }
                     else
                     {
@@ -121,6 +123,20 @@ public class InputManager : MonoBehaviour
                 Debug.Log("Nothing to push");
             }
 
+        }
+        else if (gm.controlState == ControlState.WinMenu)
+        {
+            GameManager.instance.controlState = ControlState.None;
+            int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+            if (nextSceneIndex < SceneManager.sceneCountInBuildSettings){
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                GameManager.instance.controlState = ControlState.Overworld;
+            }
+            else
+            {
+                GameManager.instance.audioManager.StopMusic();
+                SceneManager.LoadScene("MainMenu");
+            }
         }
     }
 
@@ -142,6 +158,7 @@ public class InputManager : MonoBehaviour
                 return;
             }
 
+            gm.audioManager.PlaySfx("Mask");
 
             if(gm.playerManager.isMasked == false)
             {
@@ -206,9 +223,17 @@ public class InputManager : MonoBehaviour
 
             gm.playerManager.gameObject.SetActive(false);
             gm.playerManager.gameObject.SetActive(true);
-        }
+        
+            gm.playerManager.UpdateSprite();
 
-        gm.playerManager.UpdateSprite();
+        }
+        else if (gm.controlState == ControlState.WinMenu)
+        {
+            GameManager.instance.controlState = ControlState.None;
+            Debug.Log("ReturnToHomeMenu");
+            GameManager.instance.audioManager.StopMusic();
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 
     private void action_UP(InputAction.CallbackContext obj)
@@ -218,6 +243,7 @@ public class InputManager : MonoBehaviour
             gm.playerManager.Move(Vector2.up, false, 0, 1, null);
             gm.playerManager.facing = PlayerFacing.Up;
             gm.playerManager.UpdateSprite();
+            gm.audioManager.PlaySfx("Move");
         }
     }
 
@@ -228,6 +254,7 @@ public class InputManager : MonoBehaviour
             gm.playerManager.Move(Vector2.down, false, 0, -1, null);
             gm.playerManager.facing = PlayerFacing.Down;
             gm.playerManager.UpdateSprite();
+            gm.audioManager.PlaySfx("Move");
         }
     }
 
@@ -238,6 +265,7 @@ public class InputManager : MonoBehaviour
             gm.playerManager.Move(Vector2.left, false, -1, 0, null);
             gm.playerManager.facing = PlayerFacing.Left;
             gm.playerManager.UpdateSprite();
+            gm.audioManager.PlaySfx("Move");
         }
     }
 
@@ -248,6 +276,7 @@ public class InputManager : MonoBehaviour
             gm.playerManager.Move(Vector2.right, false, 1, 0, null);
             gm.playerManager.facing = PlayerFacing.Right;
             gm.playerManager.UpdateSprite();
+            gm.audioManager.PlaySfx("Move");
         }
     }
 
@@ -263,5 +292,6 @@ public class InputManager : MonoBehaviour
 public enum ControlState
 {
     None,
-    Overworld
+    Overworld,
+    WinMenu
 }

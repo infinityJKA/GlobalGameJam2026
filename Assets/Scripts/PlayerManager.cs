@@ -154,17 +154,17 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public void ReturnToHomeMenu()
-    {
-        Debug.Log("ReturnToHomeMenu");
-        GameManager.instance.audioManager.StopMusic();
-        SceneManager.LoadScene("MainMenu");
-    }
+    // public void ReturnToHomeMenu()
+    // {
+    //     Debug.Log("ReturnToHomeMenu");
+    //     GameManager.instance.audioManager.StopMusic();
+    //     SceneManager.LoadScene("MainMenu");
+    // }
 
-    public void NextLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
+    // public void NextLevel()
+    // {
+    //     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    // }
 
 }
 

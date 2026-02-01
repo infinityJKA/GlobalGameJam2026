@@ -21,7 +21,8 @@ public class Goal : MonoBehaviour
         if(p != null)
         {
             Debug.Log("Level complete!");
-            GameManager.instance.controlState = ControlState.None;
+            GameManager.instance.audioManager.PlaySfx("Goal");
+            GameManager.instance.controlState = ControlState.WinMenu;
             GameManager.instance.playerManager.levelUiCanvas.SetActive(true);
         }
     }
