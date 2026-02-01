@@ -6,7 +6,6 @@ public class GameManager : MonoBehaviour
 {
     public ControlState controlState;
     public AudioManager audioManager;
-    [SerializeField] GameObject eventSystem;
 
     [Header("Automatic (don't edit in inspector)")]
     public static GameManager instance;
@@ -25,8 +24,6 @@ public class GameManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(this);
-
-        eventSystem.gameObject.SetActive(true);
 
 
     }

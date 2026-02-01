@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -151,6 +152,18 @@ public class PlayerManager : MonoBehaviour
                     break;
             }
         }
+    }
+
+    public void ReturnToHomeMenu()
+    {
+        Debug.Log("ReturnToHomeMenu");
+        GameManager.instance.audioManager.StopMusic();
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void NextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
 }

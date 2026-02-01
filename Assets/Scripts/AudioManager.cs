@@ -26,6 +26,12 @@ public class AudioManager : MonoBehaviour
         musicSource2.volume = 0;
     }
 
+    public void StopMusic()
+    {
+        musicSource1.Stop();
+        musicSource2.Stop();
+    }
+
     public void PlaySfx(string name)
     {
         sfxSource.PlayOneShot(Array.Find(sfx, x => x.name == name).clip);
