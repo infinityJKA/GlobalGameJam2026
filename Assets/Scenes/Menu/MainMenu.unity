@@ -407,7 +407,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &123446660
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2593,7 +2593,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1245183537
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3657,8 +3657,8 @@ MonoBehaviour:
   m_text: "Game Directors:\nChloe Gerardo\nVeracruz Castro P\xE9rez\n\nGame Design:\nGabe
     Schmitz\n\nArt, UX/UI:\nJaeden Claudio\nAbby Soldwish-Zoole\nTaylor Poorman\r\nMercy
     Howell\nShayne McLaughlin\nSydney Witherspoon\nKaylee Davis\nKendal Abeln\n\nLevel
-    Design:\nMercy Howell\nJosh McClain \n\nPrograming:\nLead Programer: Justin Alvey\nSeth
-    Heljula\nShayne McLaughlin\n\nMusic:\nLynn Rivers\n"
+    Design:\nJosh McClain \n\nPrograming:\nLead Programer: Justin Alvey\nSeth Heljula\nShayne
+    McLaughlin\n\nMusic:\nLynn Rivers\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 957095bb6566d084e85827c99f7f7d59, type: 2}
   m_sharedMaterial: {fileID: -762892483147727587, guid: 957095bb6566d084e85827c99f7f7d59, type: 2}
